@@ -51,16 +51,13 @@ public class MainActivity extends Activity {
             try {
     	        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
     	        
-
     	        for (String param: posturl[1].split("&")) {
     	        	String[] eachPair = null;
     	        	if (param.contains("=")) {
     	        		eachPair = param.split("=");
-    	        	} else {
-    	            	return "Invalid Parameters.\n<Format : key1=value1&key2=value2&....&keyN=valueN>";
+        	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));	
     	        	}
-        	      	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));
-        	    }
+    	    }
     	        
       	        post.setEntity(new UrlEncodedFormEntity(pairs));
 
@@ -71,7 +68,7 @@ public class MainActivity extends Activity {
     	        	responseBody = EntityUtils.toString(responseEntity);
     	        }
             } catch (Exception e) {
-                responseBody = "Invalid URL.";
+                responseBody = "Invalid URL.\n<Format: URL - foo://www.example.com/\nParams - key1=value1&key2=value2&...&keyN=valueN>";
             }
             
             return responseBody;
