@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
     	@Override
 		protected void onPostExecute(String result) {
     		// TODO Auto-generated method stub.
-    		MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
+//    		MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
     		MainActivity.this.textView.setText(result);
        	}
     }

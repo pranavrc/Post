@@ -1,7 +1,8 @@
 <resources>
 
     <string name="app_name">Post</string>
-    <string name="postEntry">Enter Data</string>
+    <string name="postEntry">Enter URL.</string>
+    <string name="postParams">Enter Parameters.</string>
     <string name="postSend">Send</string>
     <string name="postProgress">Progress</string>
     <string name="postResponse"></string>

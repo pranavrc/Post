@@ -1,3 +1,9 @@
+<ScrollView
+    android:id="@+id/pageScroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,6 +18,13 @@
         android:hint="@string/postEntry" >
         <requestFocus />
     </EditText>
+
+    <EditText
+        android:id="@+id/postParams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/postParams" />
 
     <Button
         android:id="@+id/postSend"
@@ -35,3 +48,5 @@
         tools:context=".MainActivity" />
 
 </LinearLayout>
+</ScrollView>
+
