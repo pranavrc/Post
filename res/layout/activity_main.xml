@@ -8,8 +8,8 @@
         android:id="@+id/postEntry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
-
+        android:ems="10"
+        android:hint="@string/postEntry" >
         <requestFocus />
     </EditText>
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Button" />
+        android:text="@string/postSend" />
 
     <SeekBar
         android:id="@+id/postProgress"
@@ -29,10 +29,8 @@
         android:id="@+id/postResponse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:text="@string/hello_world"
+        android:text="@string/postResponse"
         tools:context=".MainActivity" />
 
 </LinearLayout>
