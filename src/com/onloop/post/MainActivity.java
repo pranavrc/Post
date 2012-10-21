@@ -16,6 +16,7 @@ import org.apache.http.util.EntityUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -50,6 +51,11 @@ public class MainActivity extends Activity {
          
             try {
     	        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+    	        
+    	        for (String param: posturl[1].split("&")) {
+    	        	String[] eachPair = param.split("=");
+    	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));
+    	        }
 /*    	        pairs.add(new BasicNameValuePair("", ""));  //  TODO EditText fields for add key:value pairs  */
      
     	        post.setEntity(new UrlEncodedFormEntity(pairs));
@@ -84,8 +90,12 @@ public class MainActivity extends Activity {
    	public void postData(View view) {
    		  executePost task = new executePost();
    		  EditText userInput = (EditText)findViewById(R.id.postEntry);
+   		  EditText urlParams = (EditText)findViewById(R.id.postParams);
+
           String userInputString = userInput.getText().toString();
-   		  task.execute(new String[] { userInputString });
+          String urlParamString = urlParams.getText().toString();
+        
+          task.execute(new String[] { userInputString, urlParamString });
      }
 
     @Override
