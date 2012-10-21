@@ -34,12 +34,12 @@
         android:layout_gravity="center"
         android:onClick = "postData"
         android:text="@string/postSend" />
-
-    <SeekBar
-        android:id="@+id/postProgress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        
+    <View
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dip"
+    	android:background="#CCCCCC" />
+    
     <TextView
         android:id="@+id/postResponse"
         android:layout_width="wrap_content"
