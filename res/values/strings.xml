@@ -5,7 +5,7 @@
     <string name="postParams">Enter Parameters.</string>
     <string name="postSend">Send</string>
     <string name="postProgress">Progress</string>
-    <string name="postResponse">Send HTTP GET and POST requests.\nURL Syntax\u003A http\u003A\u002F\u002Fwww.example.com\nParams Syntax: key1\u003Dvalue1\u0026key2\u003Dvalue2\u0026...\u0026keyN\u003DvalueN\nLeave Parameters field empty to send a GET request to the entered URL.\nPranav Ravichandran \u003Cme@onloop.net\u003E</string>
+    <string name="postResponse">Send HTTP GET and POST requests.\nURL Syntax\u003A http\u003A\u002F\u002Fwww.example.com\nParams Syntax: key1\u003Dvalue1\u0026key2\u003Dvalue2\u0026...\u0026keyN\u003DvalueN\nLeave Parameters field empty to send a GET request to the entered URL.\n----\nPranav Ravichandran\nme@onloop.net</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Post Data.</string>
 
