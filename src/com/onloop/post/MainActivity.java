@@ -88,6 +88,9 @@ public class MainActivity extends Activity {
    	 */
    	public void postData(View view) {
    		  executePost task = new executePost();
+   		  
+   		  MainActivity.this.textView.setText("In Progress...");
+   		  
    		  EditText userInput = (EditText)findViewById(R.id.postEntry);
    		  EditText urlParams = (EditText)findViewById(R.id.postParams);
 
