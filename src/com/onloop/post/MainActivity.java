@@ -47,18 +47,22 @@ public class MainActivity extends Activity {
             HttpPost post = new HttpPost(posturl[0]);
             HttpResponse response = null;
             String responseBody = null;
-            Log.d("MyApp", "HIIIII");
-         
+            
             try {
     	        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
     	        
+
     	        for (String param: posturl[1].split("&")) {
-    	        	String[] eachPair = param.split("=");
-    	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));
-    	        }
-/*    	        pairs.add(new BasicNameValuePair("", ""));  //  TODO EditText fields for add key:value pairs  */
-     
-    	        post.setEntity(new UrlEncodedFormEntity(pairs));
+    	        	String[] eachPair = null;
+    	        	if (param.contains("=")) {
+    	        		eachPair = param.split("=");
+    	        	} else {
+    	            	return "Invalid Parameters.\n<Format : key1=value1&key2=value2&....&keyN=valueN>";
+    	        	}
+        	      	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));
+        	    }
+    	        
+      	        post.setEntity(new UrlEncodedFormEntity(pairs));
 
     	        response = client.execute(post);
     	        HttpEntity responseEntity = response.getEntity();
@@ -66,9 +70,8 @@ public class MainActivity extends Activity {
     	        if (responseEntity != null) {
     	        	responseBody = EntityUtils.toString(responseEntity);
     	        }
-    	        Log.d("MyApp", responseBody);
             } catch (Exception e) {
-                Log.d("MyApp","Exception was encountered");
+                responseBody = "Invalid URL.";
             }
             
             return responseBody;
@@ -76,7 +79,6 @@ public class MainActivity extends Activity {
 
     	@Override
 		protected void onPostExecute(String result) {
-    		// TODO Auto-generated method stub.
 //    		MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
     		MainActivity.this.textView.setText(result);
        	}
