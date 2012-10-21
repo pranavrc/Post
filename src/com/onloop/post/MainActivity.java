@@ -23,6 +23,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * Initial Main Activity Class.
+ */
 public class MainActivity extends Activity {
 	private TextView textView;
 
@@ -33,6 +36,9 @@ public class MainActivity extends Activity {
         this.textView = (TextView) findViewById(R.id.postResponse);
     }
 
+    /**
+     * Executes a post request to the user-specified url.
+     */
     class executePost extends AsyncTask<String, Void, String> {
         @Override
 		protected String doInBackground(String... posturl) {
@@ -44,11 +50,7 @@ public class MainActivity extends Activity {
          
             try {
     	        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-    	        pairs.add(new BasicNameValuePair("blogurlinput", "droid"));
-    	        pairs.add(new BasicNameValuePair("blogtitleinput", "foo"));
-    	        pairs.add(new BasicNameValuePair("blogdescinput", "bar"));
-    	        pairs.add(new BasicNameValuePair("bloglayoutinput", "1"));
-    	        pairs.add(new BasicNameValuePair("password", "strand1prp2"));
+/*    	        pairs.add(new BasicNameValuePair("", ""));  //  TODO EditText fields for add key:value pairs  */
      
     	        post.setEntity(new UrlEncodedFormEntity(pairs));
 
@@ -74,7 +76,12 @@ public class MainActivity extends Activity {
        	}
     }
     
-   	  public void postData(View view) {
+   	  /**
+   	 * Gets the user input from the EditText and sends it as a post request.
+   	 *
+   	 * @param view
+   	 */
+   	public void postData(View view) {
    		  executePost task = new executePost();
    		  EditText userInput = (EditText)findViewById(R.id.postEntry);
           String userInputString = userInput.getText().toString();
