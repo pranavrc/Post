@@ -16,9 +16,7 @@ import org.apache.http.util.EntityUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.InputType;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -57,16 +55,24 @@ public class MainActivity extends Activity {
     	        		eachPair = param.split("=");
         	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));	
     	        	}
-    	    }
+    	        }
     	        
       	        post.setEntity(new UrlEncodedFormEntity(pairs));
+      	        
+      	        if (posturl[2].contains(":")) {
+      	        	byte[] encoded = null;
+  	        		encoded = posturl[2].getBytes("UTF-8");
+   	        	  	String encoding = Base64.encodeToString(encoded, Base64.DEFAULT);
+   	        	  	post.setHeader("Authorization", "Basic " + encoding);
+      	        }
 
     	        response = client.execute(post);
     	        HttpEntity responseEntity = response.getEntity();
     	               
     	        if (responseEntity != null) {
-    	        	responseBody = EntityUtils.toString(responseEntity);
-    	        }
+        	    	responseBody = EntityUtils.toString(responseEntity);
+        	    }
+    	        
             } catch (Exception e) {
                 responseBody = "Invalid URL.\n<Format: URL - foo://www.example.com/\nParams - key1=value1&key2=value2&...&keyN=valueN>";
             }
@@ -93,11 +99,13 @@ public class MainActivity extends Activity {
    		  
    		  EditText userInput = (EditText)findViewById(R.id.postEntry);
    		  EditText urlParams = (EditText)findViewById(R.id.postParams);
+   		  EditText authParams = (EditText)findViewById(R.id.postAuth);
 
           String userInputString = userInput.getText().toString();
           String urlParamString = urlParams.getText().toString();
+          String authParamString = authParams.getText().toString();
         
-          task.execute(new String[] { userInputString, urlParamString });
+          task.execute(new String[] { userInputString, urlParamString, authParamString });
      }
 
     @Override

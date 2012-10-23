@@ -3,9 +3,10 @@
     <string name="app_name">Post</string>
     <string name="postEntry">Enter URL.</string>
     <string name="postParams">Enter Parameters.</string>
+    <string name="postAuth">Basic Auth \u0028user\u003Apass\u0029</string>
     <string name="postSend">Send</string>
     <string name="postProgress">Progress</string>
     <string name="postResponse">Send a HTTP POST request.\nURL Syntax\u003A http\u003A\u002F\u002Fwww.example.com\nParams Syntax: key1\u003Dvalue1\u0026key2\u003Dvalue2\u0026...\u0026keyN\u003DvalueN\n----\nPranav Ravichandran\nme@onloop.net</string>
-    <string name="title_activity_main">Post Data.</string>
+    <string name="title_activity_main">Post.</string>
 
 </resources>
