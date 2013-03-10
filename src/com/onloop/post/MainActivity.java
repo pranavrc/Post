@@ -17,9 +17,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 /**
@@ -45,20 +47,20 @@ public class MainActivity extends Activity {
             HttpPost post = new HttpPost(posturl[0]);
             HttpResponse response = null;
             String responseBody = null;
-            
+
             try {
     	        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-    	        
+
     	        for (String param: posturl[1].split("&")) {
     	        	String[] eachPair = null;
     	        	if (param.contains("=")) {
     	        		eachPair = param.split("=");
-        	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));	
+        	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));
     	        	}
     	        }
-    	        
+
       	        post.setEntity(new UrlEncodedFormEntity(pairs));
-      	        
+
       	        if (posturl[2].contains(":")) {
       	        	byte[] encoded = null;
   	        		encoded = posturl[2].getBytes("UTF-8");
@@ -68,44 +70,56 @@ public class MainActivity extends Activity {
 
     	        response = client.execute(post);
     	        HttpEntity responseEntity = response.getEntity();
-    	               
+
     	        if (responseEntity != null) {
         	    	responseBody = EntityUtils.toString(responseEntity);
         	    }
-    	        
+
             } catch (Exception e) {
-                responseBody = "Invalid URL.\n<Format: URL - foo://www.example.com/\nParams - key1=value1&key2=value2&...&keyN=valueN>";
+                responseBody = "Invalid URL.\n<Format: URL - http://www.reddit.com\nParams - key1=value1&key2=value2&...&keyN=valueN>";
             }
-            
+
             return responseBody;
        }
 
     	@Override
 		protected void onPostExecute(String result) {
-//    		MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
+    		//MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
     		MainActivity.this.textView.setText(result);
        	}
     }
-    
-   	  /**
-   	 * Gets the user input from the EditText and sends it as a post request.
-   	 *
-   	 * @param view
-   	 */
-   	public void postData(View view) {
-   		  executePost task = new executePost();
-   		  
-   		  MainActivity.this.textView.setText("In Progress...");
-   		  
-   		  EditText userInput = (EditText)findViewById(R.id.postEntry);
-   		  EditText urlParams = (EditText)findViewById(R.id.postParams);
-   		  EditText authParams = (EditText)findViewById(R.id.postAuth);
 
-          String userInputString = userInput.getText().toString();
-          String urlParamString = urlParams.getText().toString();
-          String authParamString = authParams.getText().toString();
-        
-          task.execute(new String[] { userInputString, urlParamString, authParamString });
+    /**
+    * Gets the user input from the EditText and sends it as a post request.
+    *
+    * @param view
+    */
+   	public void postData(View view) {
+		executePost task = new executePost();
+
+   		MainActivity.this.textView.setText("In Progress...");
+
+   		EditText userInput = (EditText)findViewById(R.id.postEntry);
+   		EditText urlParams = (EditText)findViewById(R.id.postParams);
+   		EditText authParams = (EditText)findViewById(R.id.postAuth);
+
+		RadioGroup reqGroup = (RadioGroup) findViewById(R.id.reqGroup);
+ 	    int typeOfReq  = reqGroup.getCheckedRadioButtonId();
+   	    View selectedButton = reqGroup.findViewById(typeOfReq);
+   	    int index = reqGroup.indexOfChild(selectedButton);
+
+   	    String reqType = null;
+   	    if (index == 0) {
+			reqType = "GET";
+        } else if (index == 1) {
+   	        reqType = "POST";
+        }
+
+        String userInputString = userInput.getText().toString();
+        String urlParamString = urlParams.getText().toString();
+        String authParamString = authParams.getText().toString();
+
+        task.execute(new String[] { userInputString, urlParamString, authParamString, reqType });
      }
 
     @Override

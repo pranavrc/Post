@@ -15,12 +15,15 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
+        public static final int getOpt=0x7f070005;
         public static final int pageScroll=0x7f070000;
         public static final int postAuth=0x7f070003;
         public static final int postEntry=0x7f070001;
+        public static final int postOpt=0x7f070006;
         public static final int postParams=0x7f070002;
-        public static final int postResponse=0x7f070005;
-        public static final int postSend=0x7f070004;
+        public static final int postResponse=0x7f070008;
+        public static final int postSend=0x7f070007;
+        public static final int reqGroup=0x7f070004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -30,13 +33,15 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int getOpt=0x7f040004;
         public static final int postAuth=0x7f040003;
         public static final int postEntry=0x7f040001;
+        public static final int postOpt=0x7f040005;
         public static final int postParams=0x7f040002;
-        public static final int postProgress=0x7f040005;
-        public static final int postResponse=0x7f040006;
-        public static final int postSend=0x7f040004;
-        public static final int title_activity_main=0x7f040007;
+        public static final int postProgress=0x7f040007;
+        public static final int postResponse=0x7f040008;
+        public static final int postSend=0x7f040006;
+        public static final int title_activity_main=0x7f040009;
     }
     public static final class style {
         public static final int AppTheme=0x7f050000;

@@ -1,23 +1,24 @@
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pageScroll"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-
-    <EditText
-        android:id="@+id/postEntry"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/postEntry" >
-        <requestFocus />
-    </EditText>
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/postEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/postEntry" >
+
+            <requestFocus />
+        </EditText>
 
     <EditText
         android:id="@+id/postParams"
@@ -35,12 +36,33 @@
         android:hint="@string/postAuth"
         android:inputType="textMultiLine|textNoSuggestions" />
 
+    <RadioGroup
+        android:id="@+id/reqGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/getOpt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/getOpt" />
+
+        <RadioButton
+            android:id="@+id/postOpt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/postOpt" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/postSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick = "postData"
+        android:onClick="postData"
         android:text="@string/postSend" />
         
     <View
