@@ -24,7 +24,7 @@ public class HttpRequests {
 	private HttpClient client = new DefaultHttpClient();
 	private String responseBody = null;
 	private HttpResponse response = null;
-	private String failedResponse = "Invalid URL.\n<Format: URL - http://www.reddit.com\nParams - key1=value1&key2=value2&...&keyN=valueN>";
+	private String failedResponse = "Check Connection or the URL entered.\n<Format: URL - http://www.reddit.com\nParams - key1=value1&key2=value2&...&keyN=valueN>";
 
 	public String postRequest(String... inputs) {
     	HttpPost post = new HttpPost(inputs[0]);
