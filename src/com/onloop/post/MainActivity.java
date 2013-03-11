@@ -1,25 +1,9 @@
 package com.onloop.post;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -28,7 +12,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 
 import com.onloop.post.HttpRequests;
-import com.onloop.post.R.menu;
 
 /**
  * Initial Main Activity Class.
@@ -105,7 +88,7 @@ public class MainActivity extends Activity {
    	/**
    	 * Copies view content to Clipboard.
    	 */
-   	public void copyToClipboard(View view) {
+   	public void copyToClipboard() {
    		String textContent = this.textView.getText().toString();
    		ClipboardManager clipObj = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
    		ClipData clipContent = ClipData.newPlainText("HTML Response", textContent);

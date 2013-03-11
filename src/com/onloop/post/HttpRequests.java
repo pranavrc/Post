@@ -15,7 +15,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import android.util.Base64;
-import android.util.Log;
 
 /**
  * Helper class with methods for HTTP POST and GET requests.
@@ -26,6 +25,12 @@ public class HttpRequests {
 	private HttpResponse response = null;
 	private String failedResponse = "Check Connection or the URL entered.\n<Format: URL - http://www.reddit.com\nParams - key1=value1&key2=value2&...&keyN=valueN>";
 
+	/**
+	 * HTTP POST Request method.
+	 *
+	 * @param Array of Strings
+	 * @return HTTP Response String
+	 */
 	public String postRequest(String... inputs) {
     	HttpPost post = new HttpPost(inputs[0]);
 
@@ -64,6 +69,12 @@ public class HttpRequests {
 
 	}
 
+	/**
+	 * HTTP GET Request method.
+	 *
+	 * @param Array of Strings
+	 * @return HTTP Response String
+	 */
 	public String getRequest(String... inputs) {
 		try {
 		    String getURL = inputs[0];
