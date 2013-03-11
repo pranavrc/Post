@@ -24,6 +24,8 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.onloop.post.HttpRequests;
+
 /**
  * Initial Main Activity Class.
  */
@@ -43,43 +45,17 @@ public class MainActivity extends Activity {
     class executePost extends AsyncTask<String, Void, String> {
         @Override
 		protected String doInBackground(String... posturl) {
-        	HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(posturl[0]);
-            HttpResponse response = null;
-            String responseBody = null;
+        	HttpRequests foo = new HttpRequests();
+        	String boo = null;
 
-            try {
-    	        List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-
-    	        for (String param: posturl[1].split("&")) {
-    	        	String[] eachPair = null;
-    	        	if (param.contains("=")) {
-    	        		eachPair = param.split("=");
-        	        	pairs.add(new BasicNameValuePair(eachPair[0], eachPair[1]));
-    	        	}
-    	        }
-
-      	        post.setEntity(new UrlEncodedFormEntity(pairs));
-
-      	        if (posturl[2].contains(":")) {
-      	        	byte[] encoded = null;
-  	        		encoded = posturl[2].getBytes("UTF-8");
-   	        	  	String encoding = Base64.encodeToString(encoded, Base64.DEFAULT);
-   	        	  	post.setHeader("Authorization", "Basic " + encoding);
-      	        }
-
-    	        response = client.execute(post);
-    	        HttpEntity responseEntity = response.getEntity();
-
-    	        if (responseEntity != null) {
-        	    	responseBody = EntityUtils.toString(responseEntity);
-        	    }
-
-            } catch (Exception e) {
-                responseBody = "Invalid URL.\n<Format: URL - http://www.reddit.com\nParams - key1=value1&key2=value2&...&keyN=valueN>";
+            if (posturl[3] == "GET") {
+            	boo = foo.getRequest(posturl);
+            	return boo;
+            } else if (posturl[3] == "POST") {
+            	boo = foo.postRequest(posturl);
             }
 
-            return responseBody;
+            return boo;
        }
 
     	@Override
