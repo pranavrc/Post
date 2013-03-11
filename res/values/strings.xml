@@ -7,8 +7,9 @@
     <string name="getOpt">GET</string>
     <string name="postOpt">POST</string>
     <string name="postSend">Send</string>
+    <string name="copyContent">Copy Content</string>
     <string name="postProgress">Progress</string>
-    <string name="postResponse">Send a HTTP POST request.\nURL Syntax\u003A http\u003A\u002F\u002Fwww.reddit.com\nParams Syntax: key1\u003Dvalue1\u0026key2\u003Dvalue2\u0026...\u0026keyN\u003DvalueN\n----\nPranav Ravichandran\nme@onloop.net</string>
+    <string name="postResponse">Send a HTTP GET or POST request.\nURL Syntax\u003A http\u003A\u002F\u002Fwww.reddit.com\nParams Syntax: key1\u003Dvalue1\u0026key2\u003Dvalue2\u0026...\u0026keyN\u003DvalueN\n----\nPranav Ravichandran\nme@onloop.net</string>
     <string name="title_activity_main">Post.</string>
 
 </resources>
