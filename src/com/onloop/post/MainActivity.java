@@ -49,17 +49,17 @@ public class MainActivity extends Activity {
     class executePost extends AsyncTask<String, Void, String> {
         @Override
 		protected String doInBackground(String... posturl) {
-        	HttpRequests foo = new HttpRequests();
-        	String boo = null;
+        	HttpRequests request = new HttpRequests();
+        	String responseText = null;
 
             if (posturl[3] == "GET") {
-            	boo = foo.getRequest(posturl);
-            	return boo;
+            	responseText = request.getRequest(posturl);
+            	return responseText;
             } else if (posturl[3] == "POST") {
-            	boo = foo.postRequest(posturl);
+            	responseText = request.postRequest(posturl);
             }
 
-            return boo;
+            return responseText;
        }
 
     	@Override
