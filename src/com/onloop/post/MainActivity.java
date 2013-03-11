@@ -19,12 +19,16 @@ import android.app.Activity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 
 import com.onloop.post.HttpRequests;
+import com.onloop.post.R.menu;
 
 /**
  * Initial Main Activity Class.
@@ -96,7 +100,17 @@ public class MainActivity extends Activity {
         String authParamString = authParams.getText().toString();
 
         task.execute(new String[] { userInputString, urlParamString, authParamString, reqType });
-     }
+    }
+   	
+   	/**
+   	 * Copies view content to Clipboard.
+   	 */
+   	public void copyToClipboard(View view) {
+   		String textContent = this.textView.getText().toString();
+   		ClipboardManager clipObj = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+   		ClipData clipContent = ClipData.newPlainText("HTML Response", textContent);
+   		clipObj.setPrimaryClip(clipContent);
+   	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
