@@ -32,24 +32,24 @@ public class MainActivity extends Activity {
     class executePost extends AsyncTask<String, Void, String> {
         @Override
 		protected String doInBackground(String... posturl) {
-        	HttpRequests request = new HttpRequests();
-        	String responseText = null;
+			HttpRequests request = new HttpRequests();
+			String responseText = null;
 
             if (posturl[3] == "GET") {
-            	responseText = request.getRequest(posturl);
-            	return responseText;
+				responseText = request.getRequest(posturl);
+				return responseText;
             } else if (posturl[3] == "POST") {
-            	responseText = request.postRequest(posturl);
+				responseText = request.postRequest(posturl);
             }
 
             return responseText;
        }
 
-    	@Override
+		@Override
 		protected void onPostExecute(String result) {
-    		//MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
-    		MainActivity.this.textView.setText(result);
-       	}
+			//MainActivity.this.textView.setMovementMethod(new ScrollingMovementMethod());
+			MainActivity.this.textView.setText(result);
+		}
     }
 
     /**
@@ -57,25 +57,25 @@ public class MainActivity extends Activity {
     *
     * @param view
     */
-   	public void postData(View view) {
+	public void postData(View view) {
 		executePost task = new executePost();
 
-   		MainActivity.this.textView.setText("In Progress...");
+		MainActivity.this.textView.setText("In Progress...");
 
-   		EditText userInput = (EditText)findViewById(R.id.postEntry);
-   		EditText urlParams = (EditText)findViewById(R.id.postParams);
-   		EditText authParams = (EditText)findViewById(R.id.postAuth);
+		EditText userInput = (EditText)findViewById(R.id.postEntry);
+		EditText urlParams = (EditText)findViewById(R.id.postParams);
+		EditText authParams = (EditText)findViewById(R.id.postAuth);
 
 		RadioGroup reqGroup = (RadioGroup) findViewById(R.id.reqGroup);
- 	    int typeOfReq  = reqGroup.getCheckedRadioButtonId();
-   	    View selectedButton = reqGroup.findViewById(typeOfReq);
-   	    int index = reqGroup.indexOfChild(selectedButton);
+		int typeOfReq  = reqGroup.getCheckedRadioButtonId();
+		View selectedButton = reqGroup.findViewById(typeOfReq);
+		int index = reqGroup.indexOfChild(selectedButton);
 
-   	    String reqType = null;
-   	    if (index == 0) {
+		String reqType = null;
+		if (index == 0) {
 			reqType = "GET";
         } else if (index == 1) {
-   	        reqType = "POST";
+			reqType = "POST";
         }
 
         String userInputString = userInput.getText().toString();
@@ -84,16 +84,16 @@ public class MainActivity extends Activity {
 
         task.execute(new String[] { userInputString, urlParamString, authParamString, reqType });
     }
-   	
-   	/**
-   	 * Copies view content to Clipboard.
-   	 */
-   	public void copyToClipboard() {
-   		String textContent = this.textView.getText().toString();
-   		ClipboardManager clipObj = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-   		ClipData clipContent = ClipData.newPlainText("HTML Response", textContent);
-   		clipObj.setPrimaryClip(clipContent);
-   	}
+
+	/**
+	 * Copies view content to Clipboard.
+	 */
+	public void copyToClipboard() {
+		String textContent = this.textView.getText().toString();
+		ClipboardManager clipObj = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+		ClipData clipContent = ClipData.newPlainText("HTML Response", textContent);
+		clipObj.setPrimaryClip(clipContent);
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
